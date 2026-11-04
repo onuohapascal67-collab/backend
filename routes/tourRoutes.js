@@ -1,9 +1,9 @@
 import express from "express"
-import { getAllTours, getTour, createTour, checkID, checkBody, updateTour, deleteTour } from "../controllers/tourController.js";
+import { getAllTours, getTour, createTour, updateTour, deleteTour } from "../controllers/tourController.js";
 
 const router= express.Router()
 
-router.param("id", checkID)
+// router.param("id", checkID)
 
 // ======================
 // TOUR ROUTES
@@ -12,7 +12,7 @@ router.param("id", checkID)
 router
   .route("/")
   .get(getAllTours)
-  .post(checkBody, createTour);
+  .post(createTour);
 
 router
   .route("/:id")

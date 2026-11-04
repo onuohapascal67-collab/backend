@@ -39,17 +39,17 @@ export const deleteUser = (req, res) => {
 };
 
 // Create a user
-const testUser = new User({
-  name: "John Doe",
-  email: "john@example.com",
-  password: "password123",
-});
+// const testUser = new User({
+//   name: "John Doe",
+//   email: "john@example.com",
+//   password: "password123",
+// });
 
-testUser
-  .save()
-  .then((doc) => {
-    console.log("User created:", doc);
-  })
-  .catch((err) => {
-    console.error("Error creating user:", err);
-  });
+// testUser
+//   .save()
+//   .then((doc) => {
+//     console.log("User created:", doc);
+//   })
+//   .catch((err) => {
+//     console.error("Error creating user:", err);
+//   });
