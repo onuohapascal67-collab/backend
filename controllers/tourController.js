@@ -1,4 +1,5 @@
 import fs from "fs"
+import Tour from "../models/tourModel.js";
 
 // ======================
 // READ DATA
