@@ -20,8 +20,23 @@ import Tour from "../models/tourModel.js";
 // GET ALL TOURS
 export const getAllTours = async (req, res) => {
   try {
-    const tours = await Tour.find();
+    // BUILD QUERY
+    const queryObj = { ...req.query };
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    excludedFields.forEach(el => delete queryObj[el]);
 
+    const query = Tour.find(queryObj);
+
+    // const tours = await Tour.find()
+    //   .where("duration")
+    //   .equals(5)
+    //   .where("difficulty")
+    //   .equals("easy");
+
+    // EXECUTE QUERY
+    const tours = await query;
+
+    // SEND RESPONSE
     res.status(200).json({
       status: "success",
       results: tours.length,
@@ -57,10 +72,13 @@ export const getTour = async (req, res) => {
 
 // CREATE TOUR
 export const createTour = async (req, res) => {
+  console.log("request body:", req.body);
   try {
     // const newTour = new Tour({})
     // newTour.save()
     const newTour = await Tour.create(req.body);
+
+    console.log("tour created successfully");
 
     res.status(201).json({
       status: "success",
@@ -69,9 +87,11 @@ export const createTour = async (req, res) => {
       },
     });
   } catch (err) {
+    console.log("error creating tour:", err.message);
+
     res.status(400).json({
       status: "fail",
-      message: "Invalid data sent!",
+      message: err.message,
     });
   }
 };
@@ -99,19 +119,16 @@ export const updateTour = async (req, res) => {
 
 // DELETE TOUR
 export const deleteTour = async (req, res) => {
-
-  try{
+  try {
     const tour = await Tour.findByIdAndDelete(req.params.id);
     res.status(204).json({
-    status: "success",
-    data: null,
-  });
-  }
-  catch (err) {
+      status: "success",
+      data: null,
+    });
+  } catch (err) {
     res.status(404).json({
       status: "fail",
       message: err,
     });
   }
-
 };

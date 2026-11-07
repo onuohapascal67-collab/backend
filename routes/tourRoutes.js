@@ -3,6 +3,7 @@ import { getAllTours, getTour, createTour, updateTour, deleteTour } from "../con
 
 const router= express.Router()
 
+
 // router.param("id", checkID)
 
 // ======================
