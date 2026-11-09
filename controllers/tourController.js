@@ -117,3 +117,17 @@ export const deleteTour = async (req, res) => {
     });
   }
 };
+
+
+export const getTourStats = async (req, res) => {
+  try{
+    const stats = Tour.aggregate([
+      
+    ])
+  }catch(err){
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+}
