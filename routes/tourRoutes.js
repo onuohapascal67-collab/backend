@@ -1,5 +1,5 @@
 import express from "express"
-import { aliasTopTours, getAllTours, getTour, createTour, updateTour, deleteTour } from "../controllers/tourController.js";
+import { aliasTopTours, getAllTours, getTour, createTour, updateTour, deleteTour, getTourStats, getMonthlyPlan } from "../controllers/tourController.js";
 
 const router= express.Router()
 
@@ -10,7 +10,13 @@ const router= express.Router()
 // TOUR ROUTES
 // ======================
 
-router.route('/top-5-cheap').get(aliasTopTours, getAllTours);
+router
+  .route('/top-5-cheap')
+  .get(aliasTopTours, getAllTours);
+
+router.route('/tour-stats').get(getTourStats);
+router.route('/monthly-plan/:year').get(getMonthlyPlan);
+
 
 router
   .route("/")
